@@ -22,9 +22,6 @@ def viewbook(request, bookId):
  context = {'book':targetBook} # book is the variable name accessible by the template
  return render(request, 'bookmodule/show.html', context)
 
-def task1lap5(request):
-     return render(request, "bookmodule/html5/links.html") 
-
 
 def index(request):
     return render(request, "bookmodule/index.html")
@@ -38,5 +35,14 @@ def viewbook(request, bookId):
 def aboutus(request):
     return render(request, 'bookmodule/aboutus.html')
 
+def links_page(request):
+    return render(request, 'bookmodule/links.html')
 
+def text_formatting_page(request):
+    return render(request, 'bookmodule/text_formatting.html')
 
+def listing_page(request):
+    return render(request, 'bookmodule/listing.html')
+
+def table_page(request):
+    return render(request, 'bookmodule/table.html')
