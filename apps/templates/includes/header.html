@@ -1,0 +1,11 @@
+<!-- <div class="topnav">
+    <a href="{% url 'books.index' %}" class="{% if request.resolver_match.url_name == 'books.index' %}active{% endif %}">Home</a>
+    <a href="{% url 'books.list_books' %}" class="{% if request.resolver_match.url_name == 'books.list_books' %}active{% endif %}">List Books</a>
+    <a href="{% url 'books.aboutus' %}" class="{% if request.resolver_match.url_name == 'books.aboutus' %}active{% endif %}">About</a>
+</div> -->
+<div class="topnav">
+    <a href="{% url 'books.index' %}">Home</a>
+    <a href="{% url 'books.list_books' %}">List Books</a>
+    <a href="{% url 'books.aboutus' %}">About</a>
+</div>
+   
