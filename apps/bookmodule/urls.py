@@ -14,8 +14,10 @@ path('list_books/', views.list_books, name="books.list_books"),
 path('<int:bookId>/', views.viewbook, name="books.view_one_book"),
 path('aboutus/', views.aboutus, name="books.aboutus"),
 
+ path('search', views.search_page, name="search_page"),
 
-
-
+path('add-sample-books/', views.add_sample_books, name='add_sample_books'),
+path('simple/query', views.simple_query, name="simple_query"),
+path('complex/query', views.lookup_query, name="lookup_query"),
 
 ]
