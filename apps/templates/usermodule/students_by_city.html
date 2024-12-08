@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students by City</title>
+</head>
+<body>
+    <h1>Number of Students in Each City</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>Number of Students</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for city_count in city_counts %}
+                <tr>
+                    <td>{{ city_count.address__city }}</td>
+                    <td>{{ city_count.student_count }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

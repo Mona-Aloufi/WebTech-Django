@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Book
+from django.db.models import Q
+from django.db.models import Count, Sum, Avg, Max, Min
 
 
 def index(request):
@@ -97,3 +99,51 @@ def lookup_query(request):
        return render(request, 'bookmodule/bookList.html', {'books':mybooks})
     else:
        return render(request, 'bookmodule/index.html')
+
+
+
+def list_books_under_50(request):
+    # Fetch books with price <= 50 using Q
+    books = Book.objects.filter(Q(price__lte=50))
+    
+    # Render the results in a template
+    return render(request, 'bookmodule/book_list less than 50.html', {'books': books})
+
+
+def edition_auther(request):
+    # Query for books with editions > 2 and title or author containing 'qu'
+    books = Book.objects.filter(
+        Q(edition__gt=2) & (Q(title__icontains='qu') | Q(author__icontains='qu'))
+    )
+
+    # Render the results in a template
+    return render(request, 'bookmodule/book_list_task2.html', {'books': books})
+def list_books_not_qu_and_editions(request):
+    # Query for books with editions <= 2 and where neither the title nor the author contains 'qu'
+    books = Book.objects.filter(
+        Q(edition__lte=2) & ~(Q(title__icontains='qu') | Q(author__icontains='qu'))
+    )
+
+    # Render the results in a template
+    return render(request, 'bookmodule/book_list_task3.html', {'books': books})
+
+def list_books_ordered_by_title(request):
+    # Query to get books ordered by title
+    books = Book.objects.order_by('title')  # Ascending order
+    # For descending order, use '-title'
+
+    # Render the results in a template
+    return render(request, 'bookmodule/book_list_task4.html', {'books': books})
+
+def book_aggregations(request):
+    # Using aggregation functions to get the required information
+    aggregation_data = Book.objects.aggregate(
+        total_books=Count('id'),
+        total_price=Sum('price'),
+        average_price=Avg('price'),
+        max_price=Max('price'),
+        min_price=Min('price')
+    )
+    
+    # Passing the aggregated data to the template
+    return render(request, 'bookmodule/book_aggregations.html', aggregation_data)

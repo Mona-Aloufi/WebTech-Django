@@ -20,4 +20,10 @@ path('add-sample-books/', views.add_sample_books, name='add_sample_books'),
 path('simple/query', views.simple_query, name="simple_query"),
 path('complex/query', views.lookup_query, name="lookup_query"),
 
+path('lab8/task1/', views.list_books_under_50, name='list_books_under_50'),
+path('lab8/task2/', views.edition_auther, name='list_books_under_50'),
+path('lab8/task3/', views.list_books_not_qu_and_editions, name='list_books_not_qu_and_editions'),
+path('lab8/task4/', views.list_books_ordered_by_title, name='list_books_ordered_by_title'),
+path('lab8/task5', views.book_aggregations, name='book_aggregations'),
+
 ]
