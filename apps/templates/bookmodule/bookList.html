@@ -64,6 +64,8 @@
                     <th>Title</th>
                     <th>Author</th>
                     <th>Price</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,6 +75,8 @@
                     <td>{{ book.title }}</td>
                     <td>{{ book.author }}</td>
                     <td>{{ book.price }}</td>
+                    <td><a  href="{%url 'updateBook' id=book.id %}" >Update</td>
+                    <td><a href="{%url 'DeleteBOOK' id=book.id%}" >Delete</td>
                 </tr>
                 {% endfor %}
             </tbody>

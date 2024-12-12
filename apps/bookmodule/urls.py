@@ -25,5 +25,12 @@ path('lab8/task2/', views.edition_auther, name='list_books_under_50'),
 path('lab8/task3/', views.list_books_not_qu_and_editions, name='list_books_not_qu_and_editions'),
 path('lab8/task4/', views.list_books_ordered_by_title, name='list_books_ordered_by_title'),
 path('lab8/task5', views.book_aggregations, name='book_aggregations'),
-
+#lab9
+path('oneBOOK/<int:bookId>', views.view_one_book_lab9, name="books.view_one_book_lap9"),
+path('book_list_lab9', views.book_list_lab9, name="books.book_list_lab9"),
+path('lab9_part1/addbook', views.addBookWithoutForms, name='ADDBook'),
+path('lab9_part1/editbook/<id>', views.UpdateBookWithoutForms, name='updateBook'),
+path('lab9_part1/deletebook/<id>', views.DeleteBOOK, name='DeleteBOOK'),
+path('lab9_part2/addbookWForm', views.addBookWForms, name='addbookWForm'),
+path('lab9_part2/editbook/<id>', views.updateBookWForms, name='updateBookWForms'),
 ]

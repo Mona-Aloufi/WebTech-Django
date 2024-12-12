@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import Book
 from django.db.models import Q
 from django.db.models import Count, Sum, Avg, Max, Min
+from .forms import BookForm
 
 
 def index(request):
@@ -147,3 +148,76 @@ def book_aggregations(request):
     
     # Passing the aggregated data to the template
     return render(request, 'bookmodule/book_aggregations.html', aggregation_data)
+
+
+    #lap9 task1
+def view_one_book_lab9(request, bookId):
+    # Fetch the book with the given ID or return a 404 error if not found
+    book = get_object_or_404(Book, id=bookId)
+    
+    # Render the template with the book object
+    return render(request, 'bookmodule/one_BOOKlap9.html', {'book': book})
+
+def book_list_lab9(request):
+    # Fetch all books from the database
+    books = Book.objects.all()
+
+    # Pass the books to the template context
+    return render(request, 'bookmodule/bookList.html', {'books': books})
+def addBookWithoutForms(request):
+        if request.method=="POST":
+            titleval=request.POST.get('title')
+            autherval=request.POST.get('author')
+            priceval=request.POST.get('price')
+            editionval=request.POST.get('edition')
+            obj=Book(title=titleval,author=autherval,price=priceval,edition=editionval)
+            obj.save()
+            return redirect('books.view_one_book_lap9',bookId=obj.id)
+        return render(request,"bookmodule/addBook.html")
+def UpdateBookWithoutForms(request,id):
+    obj = Book.objects.get(id=id)
+    if request.method=="POST":
+        titleval=request.POST.get('title')
+        autherval=request.POST.get('author')
+        priceval=request.POST.get('price')
+        editionval=request.POST.get('edition')
+        obj.title=titleval
+        obj.author=autherval
+        obj.price=priceval
+        obj.edition=editionval
+        obj.save()
+        return redirect('books.view_one_book_lap9',bookId=obj.id)
+    return render(request,"bookmodule/UpdateBook.html",{"obj":obj})
+
+def DeleteBOOK(request,id):
+    obj = Book.objects.get(id=id)
+    if request.method=='POST':
+        obj.delete()
+        return redirect("books.book_list_lab9")
+    return render(request,"bookmodule/deleteBook.html",{'obj':obj})
+
+#lab9 with DjangoForms
+def addBookWForms(request):
+    obj = None
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            obj = form.save()
+            return redirect('books.view_one_book_lap9', bookId=obj.id)
+    else:
+        form = BookForm()  # Initialize a blank form for GET requests
+    
+    return render(request, "bookmodule/addBookWForms.html", {'form': form})
+
+def updateBookWForms(request,id):
+    obj = Book.objects.get(id=id)
+    form = BookForm(instance=obj)
+    if request.method == "POST":
+        form=BookForm(request.POST, instance=obj)
+        if form.is_valid():
+            obj.save()
+            return redirect('books.view_one_book_lap9', bookId=obj.id)
+    else:
+        form = BookForm(instance=obj)  # Initialize a blank form for GET requests
+    
+    return render(request, "bookmodule/UpdateBookWForms.html", {'form': form})
