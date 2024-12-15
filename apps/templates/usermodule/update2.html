@@ -1,0 +1,20 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<!-- Add custom stylesheets here if needed -->
+{% endblock stylesheets %}
+
+{% block content %}
+<h1>Update Student Information</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Submit and Cancel Buttons -->
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="{% url 'one_student_task2' student.id %}" class="btn btn-secondary">Cancel</a>
+
+</form>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends "layouts/base.html"%}
+{% load static %}
+{%block stylesheets%}
+{%endblock stylesheets%}
+{%block content%}
+<h1>---------Student info-----</h1>
+<h3>Name:<p>{{student.name}}</p></h3>
+<h3>Age:<p>{{student.age}}</p></h3>
+<h3>Address:<p>{{student.address}}</p></h3>
+{% endblock content %}
