@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books with Editions <= 2 and No 'qu'</title>
+</head>
+<body>
+    <h1>Books with Editions ≤ 2 and No 'qu' in Title or Author</h1>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }} by {{ book.author }} - Edition: {{ book.edition }}</li>
+        {% empty %}
+            <li>No books match the criteria.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

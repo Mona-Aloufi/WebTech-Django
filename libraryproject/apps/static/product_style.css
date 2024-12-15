@@ -1,0 +1,26 @@
+/* static/css/product_style.css */
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+.product-link {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}

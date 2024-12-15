@@ -1,0 +1,12 @@
+{% extends "layouts/base.html"  %}
+{% load static %}
+{%block stylesheets%}
+{%endblock stylesheets%}
+{%block content%}
+<h1>Updating Student info</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Update Student</button>
+</form>
+{%endblock content%}

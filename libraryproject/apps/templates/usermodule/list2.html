@@ -1,0 +1,9 @@
+<ul>
+    {% for student in students %}
+    <li>
+        <a href="{% url 'one_student_task2' student.id %}">{{ student.name }}</a>
+        - Age: {{ student.age }}
+        - Addresses: {{ student.address.all|join:", " }}
+    </li>
+    {% endfor %}
+</ul>

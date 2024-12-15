@@ -1,0 +1,36 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+<!-- Add custom stylesheets here if needed -->
+{% endblock stylesheets %}
+
+{% block content %}
+<h1>Student Information</h1>
+
+<h3>Name:</h3>
+<p>{{ student.name }}</p>
+
+<h3>Age:</h3>
+<p>{{ student.age }}</p>
+
+<h3>Address:</h3>
+<p>
+    {% if student.address.all %}
+        {% for addr in student.address.all %}
+            {{ addr.city }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    {% else %}
+        No Address Assigned
+    {% endif %}
+</p>
+
+<!-- Optional: Add a link to go back to the student list or edit this student -->
+<p>
+    <a href="{% url 'list_Student_task2' %}">Back to Student List</a>
+    | 
+    <a href="{% url 'update_student_task2' student.id %}">Edit Student</a>
+    |
+    <a href="{% url 'DeleteStudent_task2' student.id %}">Delete Student</a>
+</p>
+{% endblock content %}

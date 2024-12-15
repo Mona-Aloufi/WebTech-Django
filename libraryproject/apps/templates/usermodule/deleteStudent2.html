@@ -1,0 +1,6 @@
+<h1>Are you sure you want to delete {{ student.name }}?</h1>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Confirm Deletion</button>
+    <a href="{% url 'one_student_task2' student.id %}" class="btn btn-secondary">Cancel</a>
+</form>

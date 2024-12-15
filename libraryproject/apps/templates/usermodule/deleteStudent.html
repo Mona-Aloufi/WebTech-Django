@@ -1,0 +1,12 @@
+{%extends "layouts/base.html"%}
+{%load static%}
+{%block stylesheets%}
+{%endblock stylesheets%}
+{%block content%}
+<h3>Deleting Student</h3>
+<form method="POST">
+    {% csrf_token %}
+    Are you sure to delete student {{student.name}}?
+    <button type ="submit">Delete</button>
+</form>
+{%endblock content%}
